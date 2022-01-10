@@ -1,0 +1,264 @@
+int led [] = {6,7,8,9,10,11,12,13};
+int currentLed;
+int direction;
+int ledDir;//Usado no efeito 8
+int ledEsq;// Usado no efeito 8
+int l;
+int h;
+
+
+void setup() {
+  for(int w = 0; w < 8; w++) {
+    pinMode(led[w], OUTPUT);
+  }
+}
+
+void loop(){
+
+//Efeito 1 - Vai e Volta
+currentLed = 0;
+direction = 1;
+for(int i = 0; i < 72; i++){//Efeito 1: vai e volta
+    digitalWrite(led[currentLed], HIGH);//acende o led atual
+    currentLed += direction;//incremento de acordo com o valor de direction
+    delay(100);
+    for(int x=0; x< 8; x++){//apaga todos os leds
+      digitalWrite(led[x], LOW);
+    }
+    //altera a direção se tivermos atingido o fim
+    if(currentLed == 7) {direction = -1;}
+    if(currentLed == 0) {direction =  1;}
+  }
+//Efeito 2 - Girando
+currentLed =  0;
+direction =   1;
+for(int i = 0; i < 144; i++){
+    digitalWrite(led[currentLed], HIGH);
+    if(currentLed>0){digitalWrite(led[currentLed - 1], LOW);}
+    currentLed +=direction;
+    delay(35);
+    if(currentLed == 8) {digitalWrite(led[currentLed - 1], LOW);currentLed = 0;}
+}
+//Efeito 3 - pares e ímpares
+currentLed =  0;
+direction  =  1;
+for(int i = 0; i < 80; i++){
+
+  if(direction == 1){
+    if(currentLed % 2 == 0){
+      digitalWrite(led[currentLed], HIGH);
+      currentLed += direction;
+    }
+    else{
+      digitalWrite(led[currentLed], LOW);
+      currentLed += direction;
+    }
+    delay(65);
+  }
+  if (direction == -1) {
+    if (currentLed % 2 == 0) {
+      digitalWrite(led[currentLed], LOW);
+      currentLed += direction;
+    }
+    else{
+      digitalWrite(led[currentLed], HIGH);
+      currentLed += direction;
+    }
+    delay(65);
+  }
+  if (currentLed ==  8) {direction = -1;}
+  if (currentLed == -1) {direction =  1;}
+}
+//Efeito 4 - pares e ímpares 2
+for(int i = 0; i < 15; i++){
+
+  for(int x = 0; x < 8; x++) {
+    if ( x % 2 == 0) {
+      digitalWrite(led[x], HIGH);
+    }
+  }
+  for(int x = 0; x < 8; x++){
+    if (x % 2 != 0) {
+      digitalWrite(led[x], LOW);
+    }
+  }
+  delay(200);
+  for(int x = 0; x < 8; x++){
+    if(x % 2 == 0) {
+      digitalWrite(led[x], LOW);
+    }
+  }
+  for (int x = 0; x < 8; x++){
+    if (x % 2 != 0) {
+      digitalWrite(led[x], HIGH);
+    }
+  }
+  delay(200);
+}
+  for(int x = 0; x< 8; x++) {
+    if(x % 2 != 0) {
+      digitalWrite(led[x], LOW);
+    }
+  }
+  delay(100);
+
+//Efeito 5 - VU Meter
+currentLed =  0;
+direction =   1;
+for(int i = 0; i < 80; i++) {
+
+  if (direction == 1) {
+    digitalWrite(led[currentLed], HIGH);
+    currentLed += direction;
+    delay(35);
+  }
+  if (direction == -1) {
+    digitalWrite(led[currentLed], LOW);
+    currentLed += direction;
+    delay(35);
+    }
+    delay(200);
+    // altera a direção se tivermos atingido o fim
+    if (currentLed ==   8) {direction = -1; currentLed =  7;}
+    if (currentLed ==  -1) {direction =  1; currentLed =  0;} 
+}
+
+//Efeito6 - Giroflex
+for(int i = 0; i < 30; i++) {
+  digitalWrite(led[0], HIGH);
+  digitalWrite(led[4], HIGH);
+  delay(50);
+  digitalWrite(led[0], LOW);
+  digitalWrite(led[4], LOW);
+  digitalWrite(led[1], HIGH);
+  digitalWrite(led[5], HIGH);
+  delay(50);
+  digitalWrite(led[1], LOW);
+  digitalWrite(led[5], LOW);
+  digitalWrite(led[2], HIGH);
+  digitalWrite(led[6], HIGH);
+  delay(50);
+  digitalWrite(led[2], LOW);
+  digitalWrite(led[6], LOW);
+  digitalWrite(led[3], HIGH);
+  digitalWrite(led[7], HIGH);
+  delay(50);
+  digitalWrite(led[3], LOW);
+  digitalWrite(led[7], LOW);
+  digitalWrite(led[4], HIGH);
+  digitalWrite(led[8], HIGH);
+  delay(50);
+  digitalWrite(led[4], LOW);
+  digitalWrite(led[8], LOW);
+  delay(50);
+}
+
+// Efeito 7 
+for(int i = 0; i < 10; i++){
+  for(int x = 0; x < 8; x++){
+    digitalWrite(led[x], HIGH);
+    }
+    delay(150);
+
+    for(int x = 0; x < 8; x++) {
+      if (x % 2 == 0) {
+        digitalWrite(led[x], LOW);
+      }
+    }
+    delay(350);
+
+    for(int x = 0; x < 8; x++) {
+      if (x % 2 == 0) {
+        digitalWrite(led[x], HIGH);
+      }
+    }
+    delay(150);
+
+    for(int x = 0; x < 8; x++) {
+      if (x % 2 != 0) {
+        digitalWrite(led[x], LOW);
+      }
+    }
+    delay(350);
+
+    for(int x = 0; x < 8; x++) {
+      if(x % 2 == 0 ) {
+        digitalWrite(led[x], LOW);
+      }
+    }
+    delay(150);
+}
+
+//Efeito 8 - Começa nos cantos
+ledDir = 0;
+ledEsq = 8;
+for(int i = 0; i < 4; i++) {
+  for(int i = 0; i < 5; i++) {
+    
+    digitalWrite(led[ledDir], HIGH);
+    ledDir = ledDir + 1;
+    delay(182);
+
+    digitalWrite(led[ledEsq], HIGH);
+    ledEsq = ledEsq - 1;
+    delay(182);
+  }
+
+  ledDir = 0;
+  ledEsq = 8;
+  for(int i = 0; i <4; i++){
+    digitalWrite(led[ledDir], LOW);
+    ledDir = ledDir + 1;
+    delay(182);
+
+    digitalWrite(led[ledEsq], LOW);
+    ledEsq = ledEsq -1;
+    delay(182);
+  }
+  }
+
+//Efeito 9 - Zig e Zag
+for(int i = 0; i < 7; i++) {
+  l = 1;//apaga
+  h = 0;//acende
+
+  for(int i = 0; i < 8; i++) {
+    digitalWrite(led[l], LOW);//Apaga o led atual
+    l = l - 1;
+    digitalWrite(led[h], HIGH);//Acende o led atual
+    h = h + 2;
+    delay(90);
+
+    digitalWrite(led[l], LOW);//Apaga o led atual
+    l = l + 2;
+    digitalWrite(led[h], HIGH);//Acende o led atual
+    h = h - 1;
+    delay(90);
+  }
+}
+
+//Efeito 10 - Três em Três
+for(int i = 0; i < 7; i++){
+        
+        l = 7; // apaga
+        h = 0; // acende
+
+        for(int i = 0; i < 10; i++){
+            
+            digitalWrite(led[l], LOW); // apaga o LED atual
+            l = l + 1;
+            if (l>9) {l = 0;}
+            digitalWrite(led[h], HIGH); // acende o LED atual           
+            h = h + 1;
+            delay(103);         
+        }
+        l = 7;
+        for(int i = 0; i < 3; i++){
+        digitalWrite(led[l], LOW); // apaga o LED atual
+        l = l + 1;
+        delay(103);
+        }
+    }
+
+
+}
