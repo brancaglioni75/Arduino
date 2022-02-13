@@ -1,1 +1,19 @@
+/* Aprendendo sobre variáveis. Declarar uma variável para indicar uma
+porta que usaremos no arduino.
+Variável declarada antes do void setup chamamos de variável global*/
 
+int led = 10; // Variável Global.
+
+void setup(){
+  
+  pinMode(led, OUTPUT);
+
+}
+
+void loop(){
+  digitalWrite(led, HIGH);
+  delay(1000);
+  digitalWrite(led, LOW);
+  delay(1000);
+
+}
