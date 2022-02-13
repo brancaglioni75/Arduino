@@ -1,0 +1,85 @@
+/*Aula sobre variáveis, #define, funções. Controlar 3 Leds
+*/
+
+/* Exemplo 1
+
+int led1 = 8;
+int led2 = 9;
+int led3 = 10;
+
+void setup(){
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  
+  
+}
+
+void loop (){
+  
+  digitalWrite(led1, HIGH);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+  delay(7000);
+  
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, HIGH);
+  digitalWrite(led3, LOW);
+  delay(2000);
+  
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, HIGH);
+  delay(9000);
+}
+
+*/
+
+// Exemplo 2 - USO DO #DEFINE
+//O uso de #define minimiza o uso da memória
+
+#define led1 8
+#define led2 9
+#define led3 10
+
+void setup() {
+ 
+ pinMode(led1, OUTPUT);
+ pinMode(led2, OUTPUT);
+ pinMode(led3, OUTPUT);
+  
+}
+
+void loop(){
+  
+  // Chamando as funções criadas
+  
+  ligaled1();
+  ligaled2();
+  ligaled3();
+  
+}
+//=================================================================
+// CRIAR FUNÇÕES a fim de deixar o código mais organizado e limpo:
+
+void ligaled1(){
+digitalWrite(led1, HIGH);// Definindo o led1 como ligado
+digitalWrite(led2, LOW); // Definindo o led2 como desligado
+digitalWrite(led3, LOW); // Definindo o led3 como desligado
+delay(7000);
+  
+}
+
+void ligaled2(){
+digitalWrite(led1, LOW);  // Definindo o led1 como desligado
+digitalWrite(led2, HIGH); // Definindo o led2 como ligado
+digitalWrite(led3, LOW);  // Definindo o led3 como desligado
+delay(9000);
+}
+
+void ligaled3(){
+digitalWrite(led1, LOW);  // Definindo o led1 como desligado
+digitalWrite(led2, LOW);  // Definindo o led2 como desligado
+digitalWrite(led3, HIGH); // Definindo o led3 como ligado
+delay(2000);
+}
