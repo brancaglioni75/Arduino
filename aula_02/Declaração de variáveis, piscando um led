@@ -11,8 +11,8 @@ void setup(){
 }
 
 void loop(){
-  digitalWrite(led, HIGH);
-  delay(1000);
+  digitalWrite(led, HIGH); // digitalWrite ligará ou desligará o Led
+  delay(1000); // Comando de tempo em milisegundos. Aqui 1000 milisegundos que é igual a 1 segundo
   digitalWrite(led, LOW);
   delay(1000);
 
