@@ -1,0 +1,57 @@
+// BlueBox Monitoramento de qualidade do ar
+// Autor: FILIPEFLOP
+
+// Inclusão de bibliotecas
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define TELA_LARGURA 128 // Em pixels
+#define TELA_ALTURA 64   // Em pixels
+
+#define OLED_RESET -1
+Adafruit_SSD1306 display(TELA_LARGURA, TELA_ALTURA, &Wire, OLED_RESET);
+
+const int pinoAnalogicoSensor = A0;
+const int referenciaSensor = 400; // Esse deve ser ajustado de acordo com o ambiente
+int valorAnalogico;
+
+void setup(){
+  Serial.begin(9600);
+
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+}
+
+void loop(){
+
+  // Leitura do valor analógico do sensor
+  valorAnalogico = analogRead(pinoAnalogicoSensor);
+
+  Serial.print("Valor analogico: ");
+  Serial.println(valorAnalogico);
+
+  display.clearDisplay();
+
+  display.setCursor(0,20);
+  display.print("Monitoramento ON");
+  
+  display.setCursor(0,30);
+  display.print("Leitura analog: ");
+  display.print(valorAnalogico);
+
+  if(valorAnalogico > referenciaSensor){
+    display.setCursor(0,40);
+    display.print("Gas Presente");  
+  }else{
+    display.setCursor(0,40);
+    display.print("Gas Ausente "); 
+  }
+
+  display.display();
+  
+  delay(1000);  
+}
