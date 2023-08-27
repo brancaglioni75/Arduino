@@ -9,6 +9,7 @@
 
 ============================================================================ */
 
+//Usamos a porta PWM 9. Poderia ser outra porta PWM
 #define pinLed 9
 
 
