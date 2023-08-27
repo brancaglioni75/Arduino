@@ -13,7 +13,8 @@
 char valorAnterior;
 
 void setup(){
-  
+    
+  pinMode(pinPot, INPUT);
   Serial.begin(9600);
 }
 
