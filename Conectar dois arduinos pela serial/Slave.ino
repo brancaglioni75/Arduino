@@ -20,11 +20,11 @@ void setup(){
 void loop(){
   
   char valorLidoPot;
-  valorLidoPot = map(analogRead(pinPot),0,1023,0,255);
+  valorLidoPot = map(analogRead(pinPot),0,1023,0,255);//Função map para converter o valor lido do potenciometro
   
-  if (valorLidoPot != valorAnterior){
+  if (valorLidoPot != valorAnterior){//Caso o valor lido seja diferente do valor anterior o valor é mostrado
     Serial.print(valorLidoPot);
-   	valorAnterior = valorLidoPot;
+   	valorAnterior = valorLidoPot;//O valor lido é armazenado na variável valorAnterior para comparar com o valorLidoPot e evitar o envio de dados desnecessários
 
   }
   }
