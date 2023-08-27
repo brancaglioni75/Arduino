@@ -1,0 +1,1 @@
+As portas TX e RX devem ser conectadas após os códigos serem compilados em cada arduino.
