@@ -14,7 +14,7 @@ char valorAnterior;
 
 void setup(){
     
-  pinMode(pinPot, INPUT);
+  pinMode(pinPot, INPUT);//Não há necessidade desse comando, porém, para efeito didático vamos deixá-lo.
   Serial.begin(9600);
 }
 
