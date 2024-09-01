@@ -1,0 +1,60 @@
+/* Projeto 1 do livro Manual de projetos arduino
+Name: Wilson Brancaglioni
+Modificado: 01/09/2024
+Esse código é para um Arduino e configura um circuito básico onde um botão de 
+pressão (push button) controla um LED. Vamos detalhar cada parte:
+
+Declaração de variáveis:
+const int PinoBotao = 2;
+Define que o botão está conectado ao pino 2 do Arduino. 
+A palavra-chave const indica que esse valor não mudará durante a execução do programa.
+const int PinoLed = 13;
+Define que o LED está conectado ao pino 13 do Arduino.
+int EstadoBotao = 0;
+Declara uma variável chamada EstadoBotao que será usada para armazenar o estado atual 
+do botão (pressionado ou não). Inicialmente, ela é configurada como 0 (ou seja, LOW).
+
+Função setup():
+pinMode(PinoLed, OUTPUT);
+Configura o pino 13 (onde o LED está conectado) como saída, ou seja, 
+o Arduino vai enviar sinais para acender ou apagar o LED.
+pinMode(PinoBotao, INPUT);
+Configura o pino 2 (onde o botão está conectado) como entrada, ou seja, 
+o Arduino vai ler o estado do botão (se está pressionado ou não).
+
+Função loop():
+EstadoBotao = digitalRead(PinoBotao);
+Lê o estado atual do botão conectado ao pino 2. Se o botão estiver pressionado, 
+o valor será HIGH (1). Se não estiver pressionado, o valor será LOW (0). 
+Esse valor é armazenado na variável EstadoBotao.
+if (EstadoBotao == HIGH) {
+Verifica se o botão está pressionado (HIGH). Se sim:
+digitalWrite(PinoLed, HIGH);
+Acende o LED, enviando um sinal HIGH (1) para o pino 13.
+else {
+Se o botão não estiver pressionado (LOW):
+digitalWrite(PinoLed, LOW);
+Apaga o LED, enviando um sinal LOW (0) para o pino 13.
+Resumo: Este código faz com que o LED acenda quando o botão é pressionado e apague 
+quando o botão não é pressionado. Ele funciona em um loop contínuo, verificando 
+constantemente o estado do botão e ajustando o LED de acordo.*/
+
+const int PinoBotao = 2; //Pino conectado ao botao de pressão
+const int PinoLed   = 13; // Pino conectado ao LED
+int EstadoBotao     = 0; // Atribui um valor ao botão de pressão
+
+void setup() {
+  pinMode(PinoLed, OUTPUT); // Configura o LED como saída
+  pinMode(PinoBotao, INPUT); // Configura o Botao de pressão como entrada
+}
+
+void loop(){
+  EstadoBotao = digitalRead(PinoBotao); // Lê a entrada do pino 2
+  if (EstadoBotao == HIGH){// Se o botao de pressão estiver
+                            //pressionado e configurado como HIGH
+  digitalWrite(PinoLed, HIGH); // Acende o LED
+  }
+  else{
+    digitalWrite(PinoLed, LOW); // Caso contrário apaga o LED
+  }
+}
